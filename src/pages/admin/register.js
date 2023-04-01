@@ -24,7 +24,7 @@ const Register = () => {
   const handleSubmit = async(event) =>{
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/resister', formData);
+      const response = await axios.post('https://ecommercebackend-6rn6.onrender.com/resister', formData);
       console.log(response);
       setResponse(response.data.message)
 
