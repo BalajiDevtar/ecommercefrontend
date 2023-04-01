@@ -57,7 +57,7 @@ const Login = () => {
     <form class="form-signin  border-primary">
   <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
   <h1>{response}</h1>
-  <label for="inputEmail" class="sr-only">Email address Of User</label>
+  <label for="inputEmail" class="sr-only">Email address   User</label>
   <input type="email" value={formData.email} onChange={handleChange} name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus/>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" value={formData.password} onChange={handleChange} name='password' id="inputPassword" class="form-control" placeholder="Password" required/>
