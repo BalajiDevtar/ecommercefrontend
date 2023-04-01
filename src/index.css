@@ -133,3 +133,22 @@ a {
   border:2px solid aqua;
   padding: 10px;
 }
+
+
+/* .error {
+  /* background-color: #f2dede;
+  border: 1px solid #ebccd1; */
+  /* color: #a94442;
+  padding: 15px;
+  margin: 20px; */
+  /* border-radius: 5px; */
+
+.error p {
+  margin: 0;
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  margin: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+}
