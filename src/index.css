@@ -247,6 +247,7 @@ ul li a {
     width: 50%;
     margin: auto;
   }
+ 
 }
 
 /* styles for screens 992px wide and above */
@@ -254,6 +255,7 @@ ul li a {
   .my-tab-panel {
     width: 33.33%;
   }
+  
 }
 
 /* styles for screens 1200px wide and above */
@@ -262,7 +264,10 @@ ul li a {
     width: 75%;
     margin-bottom: 30px;
   }
+  
 }
+
+
 
 
 .tabimg{
@@ -284,6 +289,20 @@ ul li a {
   border-bottom: 1px solid blue;
 }
 
+
+.tabdiv {
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 600px) {
+  .tabdiv {
+    flex-direction: column;
+  }
+  .p-unselectable-text{
+    padding: 0px !important;
+  }
+}
 
 
 
