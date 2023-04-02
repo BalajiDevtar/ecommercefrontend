@@ -1,4 +1,4 @@
-import React from 'react'
+import {React,useState,useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import LoginIcon from '@mui/icons-material/Login';
@@ -6,6 +6,26 @@ import { Link } from 'react-router-dom';
 
 
 const NavBar = () => {
+
+  const [Autoticate,setAutoticate] = useState(false);
+
+  const handleRemoveClick = () => {
+    localStorage.removeItem('token'); // remove the item from local storage
+    window.location.reload();
+  };
+
+    useEffect(() => {
+      // console.log("data", data);
+      console.log("token",localStorage.getItem("token"));
+      const token = localStorage.getItem("token")
+      if(token){
+        setAutoticate(true)
+      }
+      
+    }, [])
+
+
+   
   return (
     <div>
       <nav className="navbar navbar-expand-lg flex justify-content-between bg-body-tertiary border-primary">
@@ -48,8 +68,15 @@ const NavBar = () => {
        
       <LoginIcon />
       <Link className='p-2 text-decoration-none text-black' to="/adminlogin">Login</Link>
+      {
+        Autoticate ? 
+      <Link onClick={handleRemoveClick} to="" className='p-2  text-decoration-none text-black' >Log Out</Link>
+        
+        :null
+      }
 
       </div>
+     
      
    
     </div>

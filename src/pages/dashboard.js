@@ -2,7 +2,8 @@ import React, { useEffect,useState } from 'react'
 import NavBar from '../components/navnbar.component'
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
+import Fotter from '../components/fotter';
+import { TabView, TabPanel } from 'primereact/tabview';
 
 
 const data = [
@@ -78,7 +79,7 @@ const DashBoard = () => {
     
     <div>
       <NavBar />
-    {Autoticate ? 
+     
     <>
         
       <Carousel  >
@@ -106,11 +107,11 @@ const DashBoard = () => {
         }
       </div>
       <p className=' text-center text-black-50 text-lg-center large-text'>Elecronic Items</p>
-      <div className="row    row-cols-md-4 p-10 w-80%  g-4 mt-10  mt-5 w-auto m-auto bg-grey border " style={{width:"1300px"}}>
+      <div className="row    row-cols-md-4 p-10 w-80%  g-4 mt-10  mt-5 w-auto m-auto bg-grey  " style={{width:"1300px"}}>
         {
           data2.map((elm) => {
             return(
-            <div className="card-group m-auto   border-primery col" style={{width:"300px"}}>
+            <div className="card-group m-auto    col" style={{width:"300px"}}>
               <div className="card h-25  "  >
                 <img src={elm.img} style={{ height: "150px" }}  className="card-img-top p-15 bg-secondary" alt="..." />
                 <div className="card-body">
@@ -125,10 +126,67 @@ const DashBoard = () => {
           })
         }
 
+        
+     
       </div>
+      <div  className="my-tab-panel " >
+            <TabView>
+                <TabPanel header="More Flex,Less Friction">
+                  <div>
+                    <div>
+                      <p></p>
+                    </div>
+                    <div className='d-flex tabdiv'>
+                    <div className='tabimg'>
+                   <img className='tabimg' src="https://www-cdn.bigcommerce.com/assets/quote-image-tedbaker-checkout.png" alt="img" />
+                    </div>
+                    <div className='secondtabdiv'>
+                    <h5 className='text-black'>We fit your vision, not the other way around.</h5>
+                   <p>"We believe that a website should be designed around the needs of its users, not the other way around. By prioritizing flexibility and reducing friction, we create an experience that is enjoyable and effortless for everyone. Our goal is to make it easy for users to find what they're looking for, whether it's information about our products or services, or answers to common questions."</p>
+                    </div>
+                    </div>
+                  </div>
+                </TabPanel>
+                <TabPanel header="Heavy Discount">
+                <div>
+                    <div>
+                      <p></p>
+                    </div>
+                    <div className='d-flex  tabdiv'>
+                    <div className='tabimg'>
+                   <img className='tabimg' src="https://th.bing.com/th/id/OIP.W7rbF5IFK-LWwBDUjC8SWgHaEG?w=289&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="img" />
+                    </div>
+                    <div className='secondtabdiv'>
+                    <h5 className='text-black'>Heavy Discont On Products.</h5>
+                   <p>"Whether you're in the market for a new laptop, a stylish piece of furniture, or just some everyday essentials, you won't want to miss this event. With discounts of up to 50% off, you'll find incredible savings on top brands and popular products."</p>
+                    </div>
+                    </div>
+                  </div>
+                </TabPanel>
+                <TabPanel header="More Secure Delivery">
+                <div>
+                    <div>
+                      <p></p>
+                    </div>
+                    <div className='d-flex  tabdiv'>
+                    <div className='tabimg'>
+                   <img className='tabimg' src="https://th.bing.com/th/id/OIP.j3eK-spEgEXUJHfNRP_DcwHaEK?w=279&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="img" />
+                    </div>
+                    <div className='secondtabdiv'>
+                    <h5 className='text-black'>secure All Your Orders.</h5>
+                   <p>"In today's digital age, security is more important than ever. That's why we take the protection of our customers' data very seriously. We understand that our customers trust us with their sensitive information, and we take that responsibility very seriously."</p>
+                    </div>
+                    </div>
+                  </div>
+                </TabPanel>
+               
+            </TabView>
+        </div>
+      
     
     </>
-    : null}
+   
+   <Fotter />
     </div>
   )
 }
