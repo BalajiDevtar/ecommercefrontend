@@ -64,10 +64,13 @@ const NavBar = () => {
       </form> */}
       </div>
       <div className=' flex  p-2 '>
-      <Link className='p-5 text-decoration-none text-black' to="/adminregister" >Register</Link>
+      <Link className='p-5 text-decoration-none text-black' to="/register" >Register</Link>
        
       <LoginIcon />
-      <Link className='p-2 text-decoration-none text-black' to="/adminlogin">Login</Link>
+      <Link className='p-2 text-decoration-none text-black' to="/login">Login</Link>
+
+      <LoginIcon />
+      <Link className='p-2 text-decoration-none text-black' to="/adminlogin">Admin Login</Link>
       {
         Autoticate ? 
       <Link onClick={handleRemoveClick} to="" className='p-2  text-decoration-none text-black' >Log Out</Link>
