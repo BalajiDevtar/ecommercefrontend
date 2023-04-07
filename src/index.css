@@ -305,6 +305,63 @@ ul li a {
 }
 
 
+/* ############################## sidenav ################################################### */
+
+.containers {
+  display: flex;
+  flex-direction: row;
+}
+.sidebar {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top:50;
+  z-index: 1;
+  /* top: 0; */
+  left: 0;
+  background-color: #222;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  padding: 10px 10px 10px 30px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #ccc;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #fff;
+}
+
+.main {
+  /* margin-left: 250px; */
+  padding: 0px 10px;
+}
+
+
+.content {
+  flex: 1;
+  margin-left: 250px;
+  /* padding: 20px; */
+}
+
+@media screen and (max-height: 600px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 16px;
+  }
+}
+
+.tilechart .echarts-for-react {
+  height: 200px !important;
+}
+
+
 
 
 

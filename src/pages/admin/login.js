@@ -28,7 +28,7 @@ const CustomerLogin = () => {
       const response = await axios.post('https://ecommercebackend-6rn6.onrender.com/adminlogin', formData);
       // navigate("/")
       if(response.data.user){
-        navigate("/")
+        navigate("/adminProfile")
         localStorage.setItem('token', response.data.token);
         
       }else{
