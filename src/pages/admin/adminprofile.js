@@ -7,13 +7,18 @@ import axios from 'axios';
 
 const AdminProfile = () => {
 
+
+ 
+
+
+
  const [userData, setUserData] = useState([]);
 
  useEffect(() => {
   async function fetchData() {
     try {
-      const res = await axios.get('https://ecommercebackend-6rn6.onrender.com/api/users/count');
-      setUserData(res.data.count);
+      const res = await axios.get('http://localhost:5000/api/users/count');
+      setUserData(res.data);
       console.log(res);
     } catch (err) {
       console.error(err);
@@ -46,7 +51,9 @@ const AdminProfile = () => {
           axisTick:{
             show:false
           },
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+          //  data:userData.map(d => `Month ${d.month}`)
 
         },
         yAxis: {
@@ -62,7 +69,7 @@ const AdminProfile = () => {
           {
             barWidth:10,
             barGap:"0%",
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: userData.map((month) => month.count),
 
 
             type: 'bar'
