@@ -1,12 +1,33 @@
-import React from 'react'
+import {React,useEffect,useState} from 'react'
 import AdminSidebar from '../../components/adminsidenav.component'
 import AdminTopNav from '../../components/admintopnav'
-import EChartsReact from 'echarts-for-react'
+import EChartsReact from 'echarts-for-react';
+import axios from 'axios';
 
 
 const AdminProfile = () => {
 
-   const  onlineSignupChart = {
+ const [userData, setUserData] = useState([]);
+
+ useEffect(() => {
+  async function fetchData() {
+    try {
+      const res = await axios.get('https://ecommercebackend-6rn6.onrender.com/api/users/count');
+      setUserData(res.data.count);
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  fetchData();
+}, []);
+
+ console.log("userData", userData);
+
+
+
+
+  const  onlineSignupChart = {
     grid: {
         width: '60%',
         height: '60%',
@@ -19,10 +40,14 @@ const AdminProfile = () => {
           axisLabel:{
             show:false
           },
+          axisLine:{
+            show:false
+          },
           axisTick:{
             show:false
           },
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
         },
         yAxis: {
           type: 'value',
@@ -37,12 +62,16 @@ const AdminProfile = () => {
           {
             barWidth:10,
             barGap:"0%",
-    
-            data: [120, 200, 150, 80, 70, 110, 130],
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+
+
             type: 'bar'
           }
         ]
       };
+
+
+ 
 
     const newVisitorChart = {
         grid: {
@@ -56,9 +85,24 @@ const AdminProfile = () => {
       
             xAxis: {
               type: 'category',
+              axisLabel:{
+                show:false
+              },
+              axisTick:{
+                show:false
+              },
+              axisLine:{
+                show:false
+              },
               data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             },
             yAxis: {
+              axisLabel:{
+                show:false
+              },
+              splitLine:{
+                show:false
+              },
               type: 'value'
             },
             series: [
@@ -83,10 +127,25 @@ const AdminProfile = () => {
       },
         xAxis: {
           type: 'category',
+          axisLabel:{
+            show:false
+          },
+          axisLine:{
+            show:false
+          },
+          axisTick:{
+            show:false
+          },
           boundaryGap: false,
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
         },
         yAxis: {
+          axisLabel:{
+            show:false
+          },
+          splitLine:{
+            show:false
+          },
           type: 'value'
         },
         series: [
@@ -97,23 +156,50 @@ const AdminProfile = () => {
           }
         ]
       };
-  return (
+
+      const salesByYear = {
+         grid:{
+          top:"10",
+          bottom:"20"
+         },
+      
+            xAxis: {
+              type: 'category',
+              data: ['Jan', 'Feb', 'Mar', 'Apr', 'may', 'jun', 'July','Aug','sep','Oct','Nov','Dec']
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                data: [820, 932, 901, 934, 1290, 1330, 1320,1420,1820,1200,900,850],
+                type: 'line',
+                smooth: true
+              },
+               
+            ]
+ 
+    } 
+
+  
+  
+      return (
     <div>
     <AdminTopNav />
     <div className='containers'>
     <div className='sidenav'>
       <AdminSidebar />
       </div>
-      <div className='content tilechart  border p-3'>
-    <div className='row gap-3 '>
-     <div className='col-md-3 border p-3 ' style={{height:"261px"}}>
+      <div className='content    p-3'>
+    <div className='row gap-3 tilechart '>
+     <div className='col-md-4 border p-3 ' style={{height:"261px"}}>
        <h1>71,583</h1>
-       <p>Online Soping Project</p>
+       <p>Online SignUp</p>
        <div style={{height: "200px", width: "300px"}}>
       <EChartsReact option={onlineSignupChart}/>
       </div>
      </div>
-     <div className='col-md-3 border p-3' style={{height:"261px"}}>
+     <div className='col-md-4 border p-3' style={{height:"261px"}}>
      <h1>71,583</h1>
        <p>New Total Visitor </p>
        <div  style={{ height: '100px', width: '100%' }}>
@@ -127,7 +213,10 @@ const AdminProfile = () => {
      </div>
   
      </div>
-     <div>hello</div>
+     <div className="border p-3 mt-3" style={{width:"1160px"}} >
+      <h3>Sales of the Year</h3>
+      <EChartsReact option={salesByYear}/>
+     </div>
       </div>
       </div>
     </div>

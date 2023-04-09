@@ -8,10 +8,13 @@ const Register = () => {
 
   const [response, setResponse] = useState("")
 
+
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
+   
   });
 
   const handleChange = (event) => {
@@ -34,6 +37,8 @@ const Register = () => {
     
   }
 
+  console.log("formdata",formData.registerdate);
+
   return (
     <>
     <NavBar />
@@ -53,6 +58,7 @@ const Register = () => {
     <label for="psw"><b> Password</b></label>
     <input type="password" name="password" value={formData.password} onChange={handleChange} />
     <hr/>
+
 
     <p>By creating an account you agree to our <Link to="#">Terms & Privacy</Link>.</p>
     <button type="submit" class="registerbtn" onClick={handleSubmit}>Register</button>
