@@ -51,9 +51,9 @@ const AdminProfile = () => {
           axisTick:{
             show:false
           },
-          data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+          // data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-          //  data:userData.map(d => `Month ${d.month}`)
+           data:userData.map(d => `Month ${d.month}`)
 
         },
         yAxis: {
@@ -199,28 +199,28 @@ const AdminProfile = () => {
       </div>
       <div className='content    p-3'>
     <div className='row gap-3 tilechart '>
-     <div className='col-md-4 border p-3 ' style={{height:"261px"}}>
+     <div className='col-md-4 border p-3 ' >
        <h1>71,583</h1>
        <p>Online SignUp</p>
-       <div style={{height: "200px", width: "300px"}}>
+       <div style={{height: "200px"}}>
       <EChartsReact option={onlineSignupChart}/>
       </div>
      </div>
-     <div className='col-md-4 border p-3' style={{height:"261px"}}>
+     <div className='col-md-4 border p-3' >
      <h1>71,583</h1>
        <p>New Total Visitor </p>
        <div  style={{ height: '100px', width: '100%' }}>
       <EChartsReact option={newVisitorChart}/>
       </div>
      </div>
-     <div className='col-md-3 p-3 border ' style={{height:"261px"}}>
+     <div className='col-md-3 p-3 border ' >
      <h1>71,583</h1>
        <p>Monthly Total Order</p>
       <EChartsReact option={totalOrder}/>
      </div>
   
      </div>
-     <div className="border p-3 mt-3" style={{width:"1160px"}} >
+     <div className="border p-3 mt-3"  >
       <h3>Sales of the Year</h3>
       <EChartsReact option={salesByYear}/>
      </div>
