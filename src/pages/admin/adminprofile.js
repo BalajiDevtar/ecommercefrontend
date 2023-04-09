@@ -188,6 +188,11 @@ const AdminProfile = () => {
  
     } 
 
+    var total = 0;
+    for(var i = 0;i<userData.length ; i++){
+      total += userData[i].count
+    }
+
   
   
       return (
@@ -200,7 +205,7 @@ const AdminProfile = () => {
       <div className='content    p-3'>
     <div className='row gap-3 tilechart '>
      <div className='col-md-4 border p-3 ' >
-       <h1>71,583</h1>
+       <h1>{total}</h1>
        <p>Online SignUp</p>
        <div style={{height: "200px"}}>
       <EChartsReact option={onlineSignupChart}/>
