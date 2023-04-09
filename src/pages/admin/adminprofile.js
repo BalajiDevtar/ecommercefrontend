@@ -17,7 +17,7 @@ const AdminProfile = () => {
  useEffect(() => {
   async function fetchData() {
     try {
-      const res = await axios.get('http://localhost:5000/api/users/count');
+      const res = await axios.get('https://ecommercebackend-6rn6.onrender.com/api/users/count');
       setUserData(res.data);
       console.log(res);
     } catch (err) {
