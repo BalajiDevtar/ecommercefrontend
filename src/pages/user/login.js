@@ -2,7 +2,7 @@ import {React,useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import { Link } from 'react-router-dom';
-import NavBar from '../components/navnbar.component';
+import NavBar from '../../components/navnbar.component';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
@@ -33,7 +33,7 @@ const Login = () => {
   const handleSubmit = async(event) =>{
     event.preventDefault();
     try {
-      const response = await axios.post('https://ecommercebackend-6rn6.onrender.com/login', formData);
+      const response = await axios.post('https://shoppingbackend-60lb.onrender.com/login', formData);
       // navigate("/")
       if(response.data.user){
         navigate("/")

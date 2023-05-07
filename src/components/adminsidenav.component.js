@@ -6,18 +6,15 @@ import { Link } from 'react-router-dom';
 
 
 const AdminSidebar = () => {
-
- 
-
-
    
   return (
     <div>
     <div className="sidebar">
-      <a href="#">Dashboard</a>
-      <a href="#">Users</a>
-      <a href="#">Settings</a>
-      <a href="#">Reports</a>
+      <Link to="/adminprofile">Dashboard</Link>
+      <Link to="#">Users</Link>
+      <Link to="#">Settings</Link>
+      <Link to="#">Reports</Link>
+      <Link to="/addproduct">Add Products</Link>
     </div>
 
 

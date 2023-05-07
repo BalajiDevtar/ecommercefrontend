@@ -1,14 +1,16 @@
-import {React,useEffect,useState} from 'react'
+import {React,useEffect,useState,useRef} from 'react'
 import AdminSidebar from '../../components/adminsidenav.component'
 import AdminTopNav from '../../components/admintopnav'
 import EChartsReact from 'echarts-for-react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
+import { Toast } from 'primereact/toast';
 
 const AdminProfile = () => {
 
 
- 
+
+ const navigate = useNavigate();
 
 
 
@@ -17,7 +19,7 @@ const AdminProfile = () => {
  useEffect(() => {
   async function fetchData() {
     try {
-      const res = await axios.get('https://ecommercebackend-6rn6.onrender.com/api/users/count');
+      const res = await axios.get('https://shoppingbackend-60lb.onrender.com/api/users/count');
       setUserData(res.data);
       console.log(res);
     } catch (err) {
@@ -28,6 +30,30 @@ const AdminProfile = () => {
 }, []);
 
  console.log("userData", userData);
+
+
+ const [Autoticate,setAutoticate] = useState(false);
+
+ const toast = useRef(null);
+
+
+    useEffect(() => {
+      // console.log("data", data);
+      console.log("admintoken",localStorage.getItem("admintoken"));
+      const token = localStorage.getItem("admintoken")
+      if(token){
+        setAutoticate(true)
+      }
+
+
+      // if(Autoticate === false){
+      //   toast.current.show({severity:'error', summary: 'Error', detail:'User Not login', life: 3000});        navigate("/")
+      // }
+      
+    }, [])
+
+    console.log("toast",Autoticate);
+
 
 
 
@@ -196,7 +222,11 @@ const AdminProfile = () => {
   
   
       return (
-    <div>
+        <>
+      <Toast ref={toast} />
+      {
+ Autoticate ?
+ <div>
     <AdminTopNav />
     <div className='containers'>
     <div className='sidenav'>
@@ -232,6 +262,12 @@ const AdminProfile = () => {
       </div>
       </div>
     </div>
+        : null
+      }
+
+        </>
+          
+        
   )
 }
 

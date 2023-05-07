@@ -25,11 +25,11 @@ const CustomerLogin = () => {
   const handleSubmit = async(event) =>{
     event.preventDefault();
     try {
-      const response = await axios.post('https://ecommercebackend-6rn6.onrender.com/adminlogin', formData);
+      const response = await axios.post(`https://shoppingbackend-60lb.onrender.com/adminlogin`, formData);
       // navigate("/")
       if(response.data.user){
         navigate("/adminProfile")
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('admintoken', response.data.token);
         
       }else{
         setResponse(response.data.message)

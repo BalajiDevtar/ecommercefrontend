@@ -4,7 +4,8 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Fotter from '../components/fotter';
 import { TabView, TabPanel } from 'primereact/tabview';
-
+import { Link } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 const data = [
   {
@@ -70,8 +71,12 @@ const DashBoard = () => {
       if(token){
         setAutoticate(true)
       }
+
+      
       
     }, [])
+
+
 
   
 
@@ -94,8 +99,11 @@ const DashBoard = () => {
             return (
               <div className="col">
                 <div className="card " style={{ maxWidth: "400px" }}>
-                  <img src={elm.img} className="card-img-top  hover:shadow-indigo-500/40 img-fluid transition " style={{ height: "300px" }} alt="..." />
-                  <div className="card-body">
+                <Link to={`/productlist/${elm.Title}`}>
+                <img src={elm.img} className="card-img-top  hover:shadow-indigo-500/40 img-fluid transition " style={{ height: "300px" }} alt="..." />
+                </Link>
+                
+                  <div className="card-body"> 
                     <h5 className="card-title">{elm.Title}</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
@@ -170,7 +178,7 @@ const DashBoard = () => {
                     </div>
                     <div className='d-flex  tabdiv'>
                     <div className='tabimg'>
-                   <img className='tabimg' src="https://th.bing.com/th/id/OIP.j3eK-spEgEXUJHfNRP_DcwHaEK?w=279&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="img" />
+               <Link to="/productlist">    <img className='tabimg' src="https://th.bing.com/th/id/OIP.j3eK-spEgEXUJHfNRP_DcwHaEK?w=279&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="img" /></Link>
                     </div>
                     <div className='secondtabdiv'>
                     <h5 className='text-black'>secure All Your Orders.</h5>

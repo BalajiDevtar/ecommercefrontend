@@ -1,6 +1,6 @@
 import {React,useState} from 'react'
 import { Link } from 'react-router-dom';
-import NavBar from '../components/navnbar.component';
+import NavBar from '../../components/navnbar.component';
 import axios from "axios";
 
 
@@ -27,7 +27,7 @@ const Register = () => {
   const handleSubmit = async(event) =>{
     event.preventDefault();
     try {
-      const response = await axios.post('https://ecommercebackend-6rn6.onrender.com/resister', formData);
+      const response = await axios.post('https://shoppingbackend-60lb.onrender.com/resister', formData);
       console.log(response);
       setResponse(response.data.message)
 
@@ -48,7 +48,7 @@ const Register = () => {
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr/>
-   <h1>{response}</h1>
+   <h5 className='bg-green text-white p-3'>{response}</h5>
     <label for="name"><b>User Name</b></label>
     <input type="text" name="name" value={formData.name} onChange={handleChange} />
 
