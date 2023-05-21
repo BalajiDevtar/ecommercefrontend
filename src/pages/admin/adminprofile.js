@@ -16,13 +16,14 @@ const AdminProfile = () => {
 
  const [userData, setUserData] = useState([]);
  const [orderData,setOrderData] = useState("");
+// njgj
 
  useEffect(() => {
   async function fetchData() {
     try {
       const res = await axios.get('https://shoppingbackend-60lb.onrender.com/api/users/count');
       const orderRes = await axios.get('http://localhost:5000/api/users/count');
-      
+
       setUserData(res.data);
       console.log(res);
     } catch (err) {
@@ -52,7 +53,7 @@ const AdminProfile = () => {
       // if(Autoticate === false){
       //   toast.current.show({severity:'error', summary: 'Error', detail:'User Not login', life: 3000});        navigate("/")
       // }
-      
+
     }, [])
 
     console.log("toast",Autoticate);
@@ -68,7 +69,7 @@ const AdminProfile = () => {
         left: '20%',
         top: '0%'
       },
-    
+
         xAxis: {
           type: 'category',
           axisLabel:{
@@ -107,7 +108,7 @@ const AdminProfile = () => {
       };
 
 
- 
+
 
     const newVisitorChart = {
         grid: {
@@ -115,10 +116,10 @@ const AdminProfile = () => {
             height: '55%',
             left: '20%',
             top: '5%',
-        
+
 
           },
-      
+
             xAxis: {
               type: 'category',
               axisLabel:{
@@ -147,12 +148,12 @@ const AdminProfile = () => {
                 type: 'line',
                 smooth: true
               },
-               
+
             ]
- 
-    } 
-    
-    
+
+    }
+
+
    const totalOrder = {
     grid: {
         width: '60%',
@@ -198,7 +199,7 @@ const AdminProfile = () => {
           top:"10",
           bottom:"20"
          },
-      
+
             xAxis: {
               type: 'category',
               data: ['Jan', 'Feb', 'Mar', 'Apr', 'may', 'jun', 'July','Aug','sep','Oct','Nov','Dec']
@@ -212,18 +213,18 @@ const AdminProfile = () => {
                 type: 'line',
                 smooth: true
               },
-               
+
             ]
- 
-    } 
+
+    }
 
     var total = 0;
     for(var i = 0;i<userData.length ; i++){
       total += userData[i].count
     }
 
-  
-  
+
+
       return (
         <>
       <Toast ref={toast} />
@@ -256,7 +257,7 @@ const AdminProfile = () => {
        <p>Monthly Total Order</p>
       <EChartsReact option={totalOrder}/>
      </div>
-  
+
      </div>
      <div className="border p-3 mt-3"  >
       <h3>Sales of the Year</h3>
@@ -269,8 +270,8 @@ const AdminProfile = () => {
       }
 
         </>
-          
-        
+
+
   )
 }
 
