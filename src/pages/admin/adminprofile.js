@@ -15,11 +15,14 @@ const AdminProfile = () => {
 
 
  const [userData, setUserData] = useState([]);
+ const [orderData,setOrderData] = useState("");
 
  useEffect(() => {
   async function fetchData() {
     try {
       const res = await axios.get('https://shoppingbackend-60lb.onrender.com/api/users/count');
+      const orderRes = await axios.get('http://localhost:5000/api/users/count');
+      
       setUserData(res.data);
       console.log(res);
     } catch (err) {

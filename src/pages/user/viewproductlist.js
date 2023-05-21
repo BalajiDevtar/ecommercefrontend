@@ -1,87 +1,132 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { ProgressSpinner } from 'primereact/progressspinner';
+import 'primereact/resources/primereact.min.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import NavBar from '../../components/navnbar.component';
+
 
 const ViewProductList = (props) => {
 
     // const category = props.match.params.category;
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [image, setImage] = useState(null);
-  const {category} = useParams();
-  console.log("title",category);
-    useEffect(async() => {
-        try{
-            const response = await axios.get('http://localhost:5000/productsbycategory?category='+category)
-            setProducts(response.data)
+    const { category } = useParams();
+  const [Autoticate,setAutoticate] = useState(false);
 
-            console.log(response);
-    // console.log(title);
-              
-            // console.log(response.data)
-        }catch(err){
-            console.log(err);
+    console.log("title", category);
+    useEffect(() => {
+        const fetchData = async()=>{
+            try {
+                const response = await axios.get('https://shoppingbackend-60lb.onrender.com/productsbycategory?category=' + category)
+               if(response.data.productImage){
+                // setLoading(false);
+               }
+               setLoading(false);
+               setProducts(response.data)
+
+
+                console.log(response);
+
+
+                // console.log(title);
+
+                // console.log(response.data)
+            } catch (err) {
+                console.log(err);
+            }
         }
+      const token = localStorage.getItem("token")
 
-    // axios.get('/api/products')
-    //     .then(response => setProducts(response.data))
-    //     .catch(error => console.log(error));  
+
+        if(token){
+            setAutoticate(true)
+          }
+            fetchData()
+
+
+
+        // axios.get('/api/products')
+        //     .then(response => setProducts(response.data))
+        //     .catch(error => console.log(error));
     }, []);
 
     // console.log(image);
 
-    console.log("products",products);
-
-  
+    console.log("products", products);
 
 
-  return (
-    <>
 
-        <div>
-            {
-                products.map((elm)=>{
 
-                    {/* const base64String = btao(
-                        String.fromCharCode(..new Uint8Array(elm.productImage.data));
-                    ), */}
-                    return(
-                        <>
-                        <div className='w-[35px]'>
-                       {/* { Buffer.from(elm.buffer).toString('base64') } */}
-                        <h2>{elm.productName}</h2>
-                        <h2>{elm.productDescription}</h2>
-                        <h2>{elm.price}</h2>
-              {/* <img src={`${elm.productImage.mimetype};base64,${elm.productImage.buffer}`} alt={elm.productImage.originalname} /> */}
+    return (
+        <>
+          <NavBar />
+            <div className=' d-flex justify-content-around flex-wrap' style={{margin:"auto"}}>
+                {
+                    products.map((elm) => {
 
-              <img className='w-25 h-25' src={`https://shoppingbackend-60lb.onrender.com/${elm.productImage}`} alt="MongoDB Image" />
-              </div>
-                  {/* <img src={image} alt="scc"/>      */}
-                        </>
+                        return (
+                            <>
+                            <div className='d-flex  flex-wrap'>
 
-                    )
-                })
-            }
-        </div>
-    </>
-    // <div>
-    //   <h1>Products</h1>
-    //   {products.map(product => (
-    //     <div key={product._id}>
-    //       <h2>{product.productName}</h2>
-    //       <p>{product.productDescription}</p>
-    //       <p>{product.price}</p>
-    //       <img src={`data:${product.productImage.contentType};base64,${product.productImage.image}`} alt={product.productName} />
-    //     </div>
-    //   ))}
-    // </div>
+                                <div class="card" style={{width: "18rem",margin:"auto"}}>
+                                    {loading ? (
+                                    <div className="card flex justify-content-center">
+                             <ProgressSpinner />
+                            </div>
+                                    )
+                                : (
+                                  <>
+                                  {/* <div className='d-flex'> */}
 
-    
-  )
+                                    <img  src={`https://shoppingbackend-60lb.onrender.com/${elm.productImage}`} alt="MongoDB Image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">{elm.productName}</h5>
+                                        <p class="card-text">{elm.productDescription}</p>
+                                        {
+                                            Autoticate ?
+                                          <Link to={`/buynow/${elm._id}`} class="btn btn-primary">Go to Buy</Link>
+                                             :
+                                            alert("please Login To Buy")
+                                        }
+                                    </div>
+                                    {/* </div> */}
+                                </>
+                                )
+
+
+                                    }
+                       </div>
+                       </div>
+
+                            </>
+
+                        )
+                    })
+                }
+            </div>
+        </>
+        // <div>
+        //   <h1>Products</h1>
+        //   {products.map(product => (
+        //     <div key={product._id}>
+        //       <h2>{product.productName}</h2>
+        //       <p>{product.productDescription}</p>
+        //       <p>{product.price}</p>
+        //       <img src={`data:${product.productImage.contentType};base64,${product.productImage.image}`} alt={product.productName} />
+        //     </div>
+        //   ))}
+        // </div>
+
+
+    )
 }
 
 export default ViewProductList
 
 
 
-  
