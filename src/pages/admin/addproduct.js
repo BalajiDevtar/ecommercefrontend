@@ -6,10 +6,10 @@ const AddProduct = () => {
 
 
   const [response, setResponse] = useState("")
-
+  
   const [productImage, setProductImage] = useState(null);
 
-
+ 
   const [formData, setFormData] = useState({
     productName: '',
     productDescription: '',
@@ -28,7 +28,7 @@ const AddProduct = () => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
-
+      
     });
   };
 
@@ -40,9 +40,9 @@ const AddProduct = () => {
     formDataToSend.append("productDescription", formData.productDescription);
     formDataToSend.append("price", formData.price);
     formDataToSend.append("productImg", formData.productImg);
-
+    
     try {
-       await axios.post('https://shoppingbackend-60lb.onrender.com/addproducts',formDataToSend);
+       await axios.post('http://localhost:5000/addproducts',formDataToSend);
       console.log(formData);
       console.log("formDataToSend",formDataToSend);
       alert('Product uploaded successfully');
@@ -78,14 +78,14 @@ const AddProduct = () => {
 
   <div class="form-group">
     <label for="img">Product Image:</label>
-
+  
     <input type="file"  name="productImg" accept="image/*"   onChange={handleImageChange} class="form-control" id="productPrice"/>
   </div>
 
   <button type="submit" class="btn btn-primary">Add Product</button>
 </form>
 
-
+      
     </div>
   )
 }
