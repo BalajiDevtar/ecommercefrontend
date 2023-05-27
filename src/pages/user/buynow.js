@@ -38,6 +38,7 @@ const BuyNow = (props) => {
             // if (response.data.productImage) {
             //     setLoading(false);
             // }
+            //MAIN
             setLoading(false);
 
             setProducts(response.data)
