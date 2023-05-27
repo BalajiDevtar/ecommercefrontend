@@ -40,7 +40,7 @@ const BuyNow = (props) => {
             // }
             //MAIN
             setLoading(false);
-
+          //fixin
             setProducts(response.data)
             if(products === null) {
              setUseEffectCall(true)
