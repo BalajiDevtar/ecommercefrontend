@@ -14,13 +14,13 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  
+
 
 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-   
+
   });
 
   const handleChange = (event) => {
@@ -33,43 +33,43 @@ const Login = () => {
   const handleSubmit = async(event) =>{
     event.preventDefault();
     try {
-      const response = await axios.post('https://shoppingbackend-60lb.onrender.com/login', formData);
+      const response = await axios.post('http://localhost:5000/login', formData);
       // navigate("/")
       if(response.data.user){
         navigate("/")
         localStorage.setItem('token', response.data.token);
-        
+
       }else{
         setResponse(response.data.message)
       }
 
 
-      
-      
+
+
     } catch (error) {
       console.error(error);
-      
+
     }
-    
+
   }
 
- 
+
 
 
   return (
     <>
     <NavBar />
     <div className='login-container'>
-   
+
     <form className="form-signin  border-primary">
   <h1 className="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
-  
+
     <div class="error">
 					<p>{response}</p>
 				</div>
-  
- 
- 
+
+
+
   <label for="inputEmail" className="sr-only">Email address</label>
   <input type="email" value={formData.email} onChange={handleChange} name="email" id="inputEmail" className="form-control" placeholder="Email address" required autofocus/>
   <label for="inputPassword" className="sr-only">Password</label>
@@ -85,7 +85,7 @@ const Login = () => {
   <button onClick={handleSubmit} className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 </form>
 
-      
+
     </div>
     </>
   )

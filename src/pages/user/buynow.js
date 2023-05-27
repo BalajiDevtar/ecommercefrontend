@@ -34,7 +34,7 @@ const BuyNow = (props) => {
     useEffect(() => {
         const fetchData = async()=>{
         try {
-            const response = await axios.get('http://localhost:5000/buynowbyid?id=' + id)
+            const response = await axios.get('https://shoppingbackend-60lb.onrender.com/buynowbyid?id=' + id)
             // if (response.data.productImage) {
             //     setLoading(false);
             // }
@@ -64,7 +64,7 @@ const BuyNow = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/buynow', UpdatedArray);
+            const response = await axios.post('https://shoppingbackend-60lb.onrender.com/buynow', UpdatedArray);
             console.log("response",response);
             setResponse(response.data)
 
