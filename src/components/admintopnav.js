@@ -1,7 +1,25 @@
 import { Navbar, Nav, Container, Form, Button, Dropdown } from 'react-bootstrap';
+import { useEffect,useState } from 'react';
+import axios from 'axios';
 // import {  , BiPeBiGear FillrsonFill } from 'react-icons/bi';
 
 function AdminTopNav() {
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // const res = await axios.get('https://shoppingbackend-60lb.onrender.com/api/users/count');
+        const orderRes = await axios.get("http://localhost:5000/adminlogin");
+        // console.log();
+        // setOrderData(orderRes.data)
+        // setUserData(res.data);
+        console.log("orderRes",orderRes);
+      } catch (err) {
+        // console.error(err);
+      }
+    }
+    fetchData();
+  }, []);
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>

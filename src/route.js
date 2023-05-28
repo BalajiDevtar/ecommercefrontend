@@ -8,6 +8,7 @@ import AdminProfile from './pages/admin/adminprofile'
 import AddProduct from './pages/admin/addproduct'
 import ViewProductList from './pages/user/viewproductlist'
 import BuyNow from './pages/user/buynow'
+import ViewAllProduct from './pages/user/viewallproduct'
 
 const Routers = () => {
   return (
@@ -21,6 +22,7 @@ const Routers = () => {
       <Route exact path="/addproduct" element={<AddProduct />} />
       <Route exact path="/productlist/:category" element={<ViewProductList />} />
       <Route exact path="/buynow/:id" element={<BuyNow />} />
+      <Route exact path="/viewallproduct" element={<ViewAllProduct />} />
 
       </Routes>
     </div>

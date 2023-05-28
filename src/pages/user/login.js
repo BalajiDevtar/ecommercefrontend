@@ -33,7 +33,7 @@ const Login = () => {
   const handleSubmit = async(event) =>{
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', formData);
+      const response = await axios.post('https://eccomercebackend-iowe.onrender.com/login', formData);
       // navigate("/")
       if(response.data.user){
         navigate("/")

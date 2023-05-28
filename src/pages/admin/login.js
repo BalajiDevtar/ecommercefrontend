@@ -27,22 +27,23 @@ const CustomerLogin = () => {
     try {
       const response = await axios.post(`https://shoppingbackend-60lb.onrender.com/adminlogin`, formData);
       // navigate("/")
+
       if(response.data.user){
         navigate("/adminProfile")
         localStorage.setItem('admintoken', response.data.token);
-        
+
       }else{
         setResponse(response.data.message)
       }
 
 
-      
-      
+
+
     } catch (error) {
       console.error(error);
-      
+
     }
-    
+
   }
   return (
     <div>
@@ -72,7 +73,7 @@ const CustomerLogin = () => {
         </div>
       </div>
     </div>
-      
+
     </div>
   )
 }

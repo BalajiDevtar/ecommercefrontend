@@ -34,7 +34,7 @@ const BuyNow = (props) => {
     useEffect(() => {
         const fetchData = async()=>{
         try {
-            const response = await axios.get('https://shoppingbackend-60lb.onrender.com/buynowbyid?id=' + id)
+            const response = await axios.get('https://eccomercebackend-iowe.onrender.com/buynowbyid?id=' + id)
             // if (response.data.productImage) {
             //     setLoading(false);
             // }
@@ -65,7 +65,7 @@ const BuyNow = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('https://shoppingbackend-60lb.onrender.com/buynow', UpdatedArray);
+            const response = await axios.post('http://localhost:5000/buynow', UpdatedArray);
             console.log("response",response);
             setResponse(response.data)
 
@@ -96,7 +96,7 @@ const BuyNow = (props) => {
                                         </div>
                                      :
                                      <>
-                                        <img src={`https://shoppingbackend-60lb.onrender.com/${elm.productImage}`} alt="MongoDB Image" />
+                                        <img src={`https://eccomercebackend-iowe.onrender.com/${elm.productImage}`} alt="MongoDB Image" />
 
                                     <div className="card-body">
                                     <h5>{response}</h5>

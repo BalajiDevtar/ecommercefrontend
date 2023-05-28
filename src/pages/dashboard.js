@@ -72,21 +72,21 @@ const DashBoard = () => {
         setAutoticate(true)
       }
 
-      
-      
+
+
     }, [])
 
 
 
-  
+
 
   return (
-    
+
     <div>
       <NavBar />
-     
+
     <>
-        
+
       <Carousel  >
         <div><img src="https://rukminim1.flixcart.com/flap/1680/280/image/1defb861e409319b.jpg?q=50" alt="image1" /></div>
         <div><img src=" https://rukminim1.flixcart.com/flap/1680/280/image/685712c6cefb3c02.jpg?q=50" alt="image2" /></div>
@@ -102,8 +102,8 @@ const DashBoard = () => {
                 <Link to={`/productlist/${elm.Title}`}>
                 <img src={elm.img} className="card-img-top  hover:shadow-indigo-500/40 img-fluid transition " style={{ height: "300px" }} alt="..." />
                 </Link>
-                
-                  <div className="card-body"> 
+
+                  <div className="card-body">
                     <h5 className="card-title">{elm.Title}</h5>
                     <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                   </div>
@@ -113,7 +113,10 @@ const DashBoard = () => {
 
           })
         }
+
       </div>
+      <h1 className='border px-3 py-3 text-center w-[100%] mt-3'><Link to={"/viewallproduct"} className='text-decoration-none text-black '>View All Product</Link></h1>
+
       <p className=' text-center text-black-50 text-lg-center large-text'>Elecronic Items</p>
       <div className="row    row-cols-md-4 p-10 w-80%  g-4 mt-10  mt-5 w-auto m-auto bg-grey  " style={{width:"1300px"}}>
         {
@@ -124,7 +127,7 @@ const DashBoard = () => {
                 <img src={elm.img} style={{ height: "150px" }}  className="card-img-top p-15 bg-secondary" alt="..." />
                 <div className="card-body">
                   <h5 className="card-title text-blue  ">{elm.title}</h5>
-                  
+
                   <p className="card-text text-white"><small className="text-muted text-white">Price:- {elm.price}</small></p>
                 </div>
               </div>
@@ -134,8 +137,8 @@ const DashBoard = () => {
           })
         }
 
-        
-     
+
+
       </div>
       <div  className="my-tab-panel " >
             <TabView>
@@ -187,13 +190,13 @@ const DashBoard = () => {
                     </div>
                   </div>
                 </TabPanel>
-               
+
             </TabView>
         </div>
-      
-    
+
+
     </>
-   
+
    <Fotter />
     </div>
   )

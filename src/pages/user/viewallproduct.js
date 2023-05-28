@@ -7,7 +7,7 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 
-const ViewProductList = (props) => {
+const ViewAllProduct = (props) => {
 
     // const category = props.match.params.category;
 
@@ -19,7 +19,7 @@ const ViewProductList = (props) => {
   console.log("title",category);
     useEffect(async() => {
         try{
-            const response = await axios.get('https://eccomercebackend-iowe.onrender.com/productsbycategory?category='+category)
+            const response = await axios.get('https://eccomercebackend-iowe.onrender.com/products')
             setProducts(response.data)
             setLoading(false)
             const token = localStorage.getItem("token")
@@ -80,7 +80,8 @@ const ViewProductList = (props) => {
                                             Autoticate ?
                                           <Link to={`/buynow/${elm._id}`} class="btn btn-primary">Go to Buy</Link>
                                              :
-                                            alert("please Login To Buy")
+                                             <Link to={'/login'} class="btn btn-primary">Please Login To Buy</Link>
+
                                         }
                                     </div>
                                     {/* </div> */}
@@ -107,7 +108,7 @@ const ViewProductList = (props) => {
   )
 }
 
-export default ViewProductList
+export default ViewAllProduct
 
 
 

@@ -3,7 +3,7 @@ import AdminSidebar from '../../components/adminsidenav.component'
 import AdminTopNav from '../../components/admintopnav'
 import EChartsReact from 'echarts-for-react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { Toast } from 'primereact/toast';
 
 const AdminProfile = () => {
@@ -15,15 +15,20 @@ const AdminProfile = () => {
 
 
  const [userData, setUserData] = useState([]);
+ const [orderData, setOrderData] = useState([]);
+
 
  useEffect(() => {
   async function fetchData() {
     try {
       const res = await axios.get('https://shoppingbackend-60lb.onrender.com/api/users/count');
+      const orderRes = await axios.get("http://localhost:5000/ordercount");
+      // console.log();
+      setOrderData(orderRes.data)
       setUserData(res.data);
-      console.log(res);
+      // console.log("orderRes",orderRes);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }
   fetchData();
@@ -49,10 +54,14 @@ const AdminProfile = () => {
       // if(Autoticate === false){
       //   toast.current.show({severity:'error', summary: 'Error', detail:'User Not login', life: 3000});        navigate("/")
       // }
-      
+
     }, [])
 
-    console.log("toast",Autoticate);
+    // userData.map((elm)=>{
+    //   console.log("mo",`${elm.month}`);
+    // })
+
+    console.log("toast",userData);
 
 
 
@@ -65,7 +74,7 @@ const AdminProfile = () => {
         left: '20%',
         top: '0%'
       },
-    
+
         xAxis: {
           type: 'category',
           axisLabel:{
@@ -79,7 +88,7 @@ const AdminProfile = () => {
           },
           // data: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-           data:userData.map(d => `Month ${d.month}`)
+           data:userData.map(d => `${d.month}`)
 
         },
         yAxis: {
@@ -104,7 +113,7 @@ const AdminProfile = () => {
       };
 
 
- 
+
 
     const newVisitorChart = {
         grid: {
@@ -112,10 +121,10 @@ const AdminProfile = () => {
             height: '55%',
             left: '20%',
             top: '5%',
-        
+
 
           },
-      
+
             xAxis: {
               type: 'category',
               axisLabel:{
@@ -144,12 +153,12 @@ const AdminProfile = () => {
                 type: 'line',
                 smooth: true
               },
-               
+
             ]
- 
-    } 
-    
-    
+
+    }
+
+
    const totalOrder = {
     grid: {
         width: '60%',
@@ -170,7 +179,7 @@ const AdminProfile = () => {
             show:false
           },
           boundaryGap: false,
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data:orderData.map(d => `Month ${d.month}`)
         },
         yAxis: {
           axisLabel:{
@@ -183,7 +192,7 @@ const AdminProfile = () => {
         },
         series: [
           {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: orderData.map((month) => month.count),
             type: 'line',
             areaStyle: {}
           }
@@ -195,7 +204,7 @@ const AdminProfile = () => {
           top:"10",
           bottom:"20"
          },
-      
+
             xAxis: {
               type: 'category',
               data: ['Jan', 'Feb', 'Mar', 'Apr', 'may', 'jun', 'July','Aug','sep','Oct','Nov','Dec']
@@ -209,18 +218,23 @@ const AdminProfile = () => {
                 type: 'line',
                 smooth: true
               },
-               
+
             ]
- 
-    } 
+
+    }
 
     var total = 0;
     for(var i = 0;i<userData.length ; i++){
       total += userData[i].count
     }
 
-  
-  
+    var totalOrderData = 0;
+    for(var i = 0;i<orderData.length ; i++){
+      totalOrderData += orderData[i].count
+    }
+
+
+
       return (
         <>
       <Toast ref={toast} />
@@ -249,11 +263,11 @@ const AdminProfile = () => {
       </div>
      </div>
      <div className='col-md-3 p-3 border ' >
-     <h1>71,583</h1>
+     <h1>{totalOrderData}</h1>
        <p>Monthly Total Order</p>
       <EChartsReact option={totalOrder}/>
      </div>
-  
+
      </div>
      <div className="border p-3 mt-3"  >
       <h3>Sales of the Year</h3>
@@ -266,8 +280,8 @@ const AdminProfile = () => {
       }
 
         </>
-          
-        
+
+
   )
 }
 
