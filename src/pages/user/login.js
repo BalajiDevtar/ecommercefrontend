@@ -59,7 +59,7 @@ const Login = () => {
   return (
     <>
     <NavBar />
-    <div className='login-container'>
+    <div className='login-container p-3'>
 
     <form className="form-signin  border-primary">
   <h1 className="h3 mb-3 font-weight-normal text-center">Please sign in</h1>

@@ -35,17 +35,8 @@ const BuyNow = (props) => {
         const fetchData = async()=>{
         try {
             const response = await axios.get('https://eccomercebackend-iowe.onrender.com/buynowbyid?id=' + id)
-            // if (response.data.productImage) {
-            //     setLoading(false);
-            // }
-            //MAIN
             setLoading(false);
-          //fixin
             setProducts(response.data)
-            if(products === null) {
-             setUseEffectCall(true)
-            }
-            console.log("response",response);
         } catch (err) {
             console.log(err);
         }

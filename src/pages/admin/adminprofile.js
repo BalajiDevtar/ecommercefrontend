@@ -5,10 +5,12 @@ import EChartsReact from 'echarts-for-react';
 import axios from 'axios';
 import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { Toast } from 'primereact/toast';
+import DashBoard from '../dashboard';
+import CustomerLogin from './login';
 
-const AdminProfile = () => {
+const AdminProfile = ({formdata}) => {
 
-
+  console.log("loginResponse",formdata.email);
 
  const navigate = useNavigate();
 
@@ -16,6 +18,7 @@ const AdminProfile = () => {
 
  const [userData, setUserData] = useState([]);
  const [orderData, setOrderData] = useState([]);
+ const [loginUserData,setLoginUserData] = useState([])
 
 
  useEffect(() => {
@@ -24,7 +27,11 @@ const AdminProfile = () => {
       const res = await axios.get('https://shoppingbackend-60lb.onrender.com/api/users/count');
       const orderRes = await axios.get("http://localhost:5000/ordercount");
       // console.log();
+      const response = await axios.post(`https://shoppingbackend-60lb.onrender.com/adminlogin`, formdata);
+
       setOrderData(orderRes.data)
+      setLoginUserData(response.data.user)
+      console.log("res",loginUserData);
       setUserData(res.data);
       // console.log("orderRes",orderRes);
     } catch (err) {
@@ -45,10 +52,14 @@ const AdminProfile = () => {
     useEffect(() => {
       // console.log("data", data);
       console.log("admintoken",localStorage.getItem("admintoken"));
+
       const token = localStorage.getItem("admintoken")
       if(token){
         setAutoticate(true)
       }
+      const userData = localStorage.getItem("userdata")
+
+      console.log("token",JSON.stringify( userData));
 
 
       // if(Autoticate === false){
@@ -207,14 +218,14 @@ const AdminProfile = () => {
 
             xAxis: {
               type: 'category',
-              data: ['Jan', 'Feb', 'Mar', 'Apr', 'may', 'jun', 'July','Aug','sep','Oct','Nov','Dec']
+              data: orderData.map(d => `${d.month}`)
             },
             yAxis: {
               type: 'value'
             },
             series: [
               {
-                data: [820, 932, 901, 934, 1290, 1330, 1320,1420,1820,1200,900,850],
+                data: orderData.map((month) => month.count),
                 type: 'line',
                 smooth: true
               },
@@ -241,7 +252,7 @@ const AdminProfile = () => {
       {
  Autoticate ?
  <div>
-    <AdminTopNav />
+    <AdminTopNav loginData={loginUserData} />
     <div className='containers'>
     <div className='sidenav'>
       <AdminSidebar />
@@ -276,7 +287,7 @@ const AdminProfile = () => {
       </div>
       </div>
     </div>
-        : null
+        : <CustomerLogin />
       }
 
         </>

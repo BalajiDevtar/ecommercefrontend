@@ -1,9 +1,13 @@
 import { Navbar, Nav, Container, Form, Button, Dropdown } from 'react-bootstrap';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 // import {  , BiPeBiGear FillrsonFill } from 'react-icons/bi';
 
-function AdminTopNav() {
+function AdminTopNav({loginData}) {
+
+  const router = useNavigate();
+  console.log("loginData",loginData);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,6 +24,12 @@ function AdminTopNav() {
     }
     fetchData();
   }, []);
+
+  const handleRemoveClick = () => {
+    localStorage.removeItem('admintoken'); // remove the item from local storage
+    window.location.reload("/");
+    router("/")
+  };
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -56,15 +66,15 @@ function AdminTopNav() {
             <Dropdown>
               <Dropdown.Toggle variant="dark" id="userMenu">
                 {/* <BiPersonFill className="me-2" /> */}
-                Your Name
-                <img src="your-profile-image.png" alt="Your Profile Image" width="30" height="30" className="rounded-circle ms-2" />
+                {loginData.email}
+                {/* <img src="your-profile-image.png" alt="Your Profile Image" width="30" height="30" className="rounded-circle ms-2" /> */}
               </Dropdown.Toggle>
 
               <Dropdown.Menu align="end">
                 <Dropdown.Item href="#">Profile</Dropdown.Item>
                 <Dropdown.Item href="#">Settings</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item href="#">Logout</Dropdown.Item>
+                <Dropdown.Item href="#" onClick={handleRemoveClick}>Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
